@@ -1,0 +1,19 @@
+<div style="align-content: center">
+    <h3>Please SignUP!</h3></div>
+<mat-card>
+  <form (submit)="onSignUp(signupForm)" #signupForm="ngForm" >
+    <mat-form-field>
+    <input matInput name="name" ngModel type="text" #name="ngModel"  placeholder="name" required minlength="4">
+    <mat-error *ngIf="name.invalid">Please enter a valid and unique name.</mat-error>
+
+  
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput name="password" ngModel type="password" placeholder="password" #password="ngModel" required minlength="6" >
+    <mat-error *ngIf="password.invalid">Please enter a valid password.</mat-error>
+  
+  </mat-form-field>
+    <button mat-raised-button color="accent" type="submit">SignUP</button>
+  
+  </form>
+  </mat-card>

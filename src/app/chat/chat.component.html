@@ -1,0 +1,6 @@
+<div class="list" *ngIf="isAuthenticated" >
+    <div *ngFor="let user of users">
+        <p><button mat-raised-button color="accent" routerLink='/chatroom' [queryParams]="{name:user.name}">{{user.name}}</button>
+        </p>
+    </div> 
+</div>

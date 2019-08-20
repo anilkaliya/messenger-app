@@ -1,0 +1,16 @@
+<div style="align-content: center">
+<h3>Please login!</h3></div>
+<mat-card>
+  <form (submit)="onSignIn(loginForm)" #loginForm="ngForm" >
+    <mat-form-field>
+    <input matInput name="name" ngModel type="text" #name="ngModel"  placeholder="name" required>
+  
+  
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput name="password" ngModel type="password" placeholder="password" #passwordInput="ngModel" minlength="6" required >
+    </mat-form-field>
+    <button mat-raised-button color="accent" type="submit">SignIn</button>
+  
+  </form>
+  </mat-card>

@@ -1,0 +1,12 @@
+ <h3>
+   You Are Chatting with {{selectedUser}}
+ </h3>
+     <div *ngFor="let message of messageArray">
+       <p *ngIf="message.polarity=='positive'">  {{message.user}} ::  {{message.message}}  <ngx-emoji [emoji]="{  id: 'smiley', skin: 3 }" size="16"></ngx-emoji></p>
+       <p *ngIf="message.polarity=='neutral'">{{message.user}} ::  {{message.message}}  <ngx-emoji [emoji]="{  id: 'neutral_face', skin: 3 }" size="16"></ngx-emoji></p>
+       <p *ngIf="message.polarity=='negative'"> {{message.user}} ::  {{message.message}}  <ngx-emoji [emoji]="{  id: 'disappointed_relieved', skin: 3 }" size="16"></ngx-emoji></p>
+     </div>
+       <mat-form-field>
+    <input matInput placeholder="Type ur message" [(ngModel)]="message" name="message" class="box">
+  </mat-form-field>
+  <button (click)="sendMessage()" class="send">send</button>

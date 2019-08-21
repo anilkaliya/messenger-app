@@ -10,7 +10,7 @@ const app = express();
 
 // body-parser middleware
 mongoose
-  .connect(process.env.MONGODB_URI)
+  .connect(process.env.MONGOLAB_ONYX_URI)
   .then(() => {
     console.log("Connected to database!");
   })

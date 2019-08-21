@@ -22,7 +22,7 @@ import { ChatroomComponent } from './chatroom/chatroom.component';
 import { PickerModule } from '@ctrl/ngx-emoji-mart';
 import { EmojiModule } from '@ctrl/ngx-emoji-mart/ngx-emoji';
 
-const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
+const config: SocketIoConfig = { url: '', options: {} };
 
 @NgModule({
   declarations: [

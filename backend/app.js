@@ -41,7 +41,14 @@ app.use((req, res, next) => {
   );
   next();
 });
+const port=process.env.PORT||3000;
+app.set( 'port', port );
 
+
+const server = http.createServer(app);
+server.listen(port,()=>{
+  console.log("listening");
+});
 
 
 const io = socket.listen(server);
@@ -70,13 +77,6 @@ io.sockets.on('connection', (socket) => {
 
 app.use("/api/users",userRoutes);
 
-const port=process.env.PORT||3000;
-app.set( 'port', port );
 
-
-const server = http.createServer(app);
-server.listen(port,()=>{
-  console.log("listening");
-});
 
 module.exports=app;

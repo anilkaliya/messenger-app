@@ -1,12 +1,19 @@
 import { Injectable } from '@angular/core';
 import { Socket } from 'ngx-socket-io';
 import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class WebsocketService {
-  constructor(private socket:Socket) { } 
+   private Messages:{name:String,message:String}[];
+  constructor(private socket:Socket,private http:HttpClient) { } 
+getchats(chatroom:String){
+return this.http.get<any>('http://localhost:3000/api/chat/'+chatroom);
+
+}
 
   joinRoom(data){
     this.socket.emit('join',data);

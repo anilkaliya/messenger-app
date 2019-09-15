@@ -1,12 +1,29 @@
- <h3>
-   You Are Chatting with {{selectedUser}}
- </h3>
-     <div *ngFor="let message of messageArray">
-       <p *ngIf="message.polarity=='positive'">  {{message.user}} ::  {{message.message}}  <ngx-emoji [emoji]="{  id: 'smiley', skin: 3 }" size="16"></ngx-emoji></p>
-       <p *ngIf="message.polarity=='neutral'">{{message.user}} ::  {{message.message}}  <ngx-emoji [emoji]="{  id: 'neutral_face', skin: 3 }" size="16"></ngx-emoji></p>
-       <p *ngIf="message.polarity=='negative'"> {{message.user}} ::  {{message.message}}  <ngx-emoji [emoji]="{  id: 'disappointed_relieved', skin: 3 }" size="16"></ngx-emoji></p>
+
+
+<div class ="both">
+ <!-- <ol class="chat" #scrollMe [scrollTop]="scrollMe.scrollHeight"  *ngIf="chatArray.length > 0"> -->
+ <div  #scrollMe [scrollTop]="scrollMe.scrollHeight" class= "userTextDivOp" *ngFor="let message of chatArray" >
+   <span class="username">{{message.messages[0].name}}</span>
+<span class="message"> {{message.messages[0].message}}  </span>
+<span class="date">({{ message.date | date:'M/d/yy h:mm a' }})</span> 
+ </div>
+
+     <div  #scrollMe [scrollTop]="scrollMe.scrollHeight" class= "userTextDivOp" *ngFor="let message of messageArray">
+       <span class="username">{{message.user}}</span>
+       <span class="message" *ngIf="message.polarity=='positive'">{{message.message}}  <ngx-emoji [emoji]="{  id: 'smiley', skin: 3 }" size="16"></ngx-emoji></span>
+       <span class="message" *ngIf="message.polarity=='neutral'">  {{message.message}}  <ngx-emoji [emoji]="{  id: 'neutral_face', skin: 3 }" size="16"></ngx-emoji></span>
+       <span class="message" *ngIf="message.polarity=='negative'">   {{message.message}}  <ngx-emoji [emoji]="{  id: 'disappointed_relieved', skin: 3 }" size="16"></ngx-emoji></span>
+      
      </div>
-       <mat-form-field>
-    <input matInput placeholder="Type ur message" [(ngModel)]="message" name="message" class="box">
-  </mat-form-field>
-  <button (click)="sendMessage()" class="send">send</button>
+
+    </div>
+
+    <div class="typezone">
+   
+        <form>
+          <textarea type="text" #msgInput (keydown.enter)="sendMessage(msgInput.value);false;msgInput.value='';" placeholder="Say something"></textarea><input type="submit" class="send" value=""/>
+       </form>
+ 
+
+
+</div>

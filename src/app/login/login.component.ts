@@ -17,9 +17,6 @@ export class LoginComponent implements OnInit {
     if(form.invalid){
       return;
     }
-    console.log(form.value.name);
-    console.log(form.value.password);
-
     this.userService.signIn(form.value.name,form.value.password);
   }
 

@@ -9,8 +9,8 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./chatroom.component.css']
 })
 export class ChatroomComponent implements OnInit {
- 
- 
+
+ private chatArray:any[];
   private message:String;
   private messageArray:{message:String,user:String,polarity:String}[]=[];
   private chatroom;
@@ -38,10 +38,16 @@ export class ChatroomComponent implements OnInit {
       this.chatroom=currentUser.concat(this.selectedUser);
     }
     this.webs.joinRoom({user:currentUser,room:this.chatroom});
+    this.webs.getchats(this.chatroom).subscribe(messages=>{
+    this.chatArray=messages;
+    });
      }
+    //  stringAsDate() {
+    //   return Date.now();
+    // }
  
-  sendMessage(){
-    this.webs.sendMessage({message:this.message,room:this.chatroom,user:this.user});
+  sendMessage(message){
+    this.webs.sendMessage({message:message,room:this.chatroom,user:this.user});
   }
-
+ 
 }

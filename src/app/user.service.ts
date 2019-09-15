@@ -18,7 +18,7 @@ private isAuthenticated=false;
   signIn(name:string,password:string){
     const authData:AuthData={name:name,password:password};
     this.http.post<{token:string,message:string,name:string}>
-    ("/api/users/login",authData)
+    ("http://localhost:3000/api/users/login",authData)
     .subscribe(responseData=>{
       const token=responseData.token;
       this.token=token;
@@ -43,7 +43,7 @@ private isAuthenticated=false;
   signUp(name:string,password:string){
     const authData:AuthData={name:name,password:password};
     this.http.post<{token:string,message:string}>
-    ("/api/users/signup",authData)
+    ("http://localhost:3000/api/users/signup",authData)
     .subscribe(responseData=>{
      
       console.log("signup done");
@@ -53,7 +53,7 @@ private isAuthenticated=false;
   }
 
   getAllUsers(){
-    return this.http.get("/api/users");
+    return this.http.get("http://localhost:3000/api/users");
   }
 }
  

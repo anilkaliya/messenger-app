@@ -3,20 +3,30 @@ const bodyParser = require('body-parser');
 const socket = require('socket.io');
 const mongoose=require('mongoose');
 const userRoutes = require("./routes/user");
+const chatRoutes = require("./routes/chat");
 var AYLIENTextAPI = require('aylien_textapi');
 const http = require("http");
+const Chat=require('./models/chat');
+
 
 const app = express();
-
-// body-parser middleware
 mongoose
-  .connect(process.env.MONGOLAB_ONYX_URI)
+  .connect('mongodb://localhost:27017/chat-app')
   .then(() => {
     console.log("Connected to database!");
   })
   .catch(() => {
     console.log("Connection failed!");
   });
+// body-parser middleware
+// mongoose
+//   .connect(process.env.MONGOLAB_ONYX_URI)
+//   .then(() => {
+//     console.log("Connected to database!");
+//   })
+//   .catch(() => {
+//     console.log("Connection failed!");
+//   });
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -64,9 +74,14 @@ io.sockets.on('connection', (socket) => {
     }, function(error, response) {
       if (error === null) {
         polarity=response.polarity;
-       
-      }
-      console.log(polarity);
+       }
+       const chat=new Chat({
+         messages:[{name:data.user,message:data.message}],
+         chatroom:data.room
+       });
+       chat.save().then(data=>{
+         console.log(data);
+       });
       io.in(data.room).emit('new message', { message: data.message,user:data.user,polarity:polarity});
 
     });
@@ -76,6 +91,7 @@ io.sockets.on('connection', (socket) => {
  
 
 app.use("/api/users",userRoutes);
+app.use("/api/chat",chatRoutes);
 
 
 

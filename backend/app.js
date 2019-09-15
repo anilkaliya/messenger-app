@@ -10,23 +10,23 @@ const Chat=require('./models/chat');
 
 
 const app = express();
-mongoose
-  .connect('mongodb://localhost:27017/chat-app')
-  .then(() => {
-    console.log("Connected to database!");
-  })
-  .catch(() => {
-    console.log("Connection failed!");
-  });
-// body-parser middleware
 // mongoose
-//   .connect(process.env.MONGOLAB_ONYX_URI)
+//   .connect('mongodb://localhost:27017/chat-app')
 //   .then(() => {
 //     console.log("Connected to database!");
 //   })
 //   .catch(() => {
 //     console.log("Connection failed!");
 //   });
+// body-parser middleware
+mongoose
+  .connect(process.env.MONGOLAB_ONYX_URI)
+  .then(() => {
+    console.log("Connected to database!");
+  })
+  .catch(() => {
+    console.log("Connection failed!");
+  });
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));

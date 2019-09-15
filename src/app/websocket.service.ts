@@ -11,7 +11,7 @@ export class WebsocketService {
    private Messages:{name:String,message:String}[];
   constructor(private socket:Socket,private http:HttpClient) { } 
 getchats(chatroom:String){
-return this.http.get<any>('http://localhost:3000/api/chat/'+chatroom);
+return this.http.get<any>('/api/chat/'+chatroom);
 
 }
 

@@ -11,6 +11,7 @@ export class ChatComponent implements OnInit,OnDestroy {
 private users;
 isAuthenticated=false;
 isAuthsub:Subscription;
+
   constructor(private userService:UserService) { }
 
   ngOnInit() {
@@ -21,8 +22,8 @@ isAuthsub:Subscription;
     this.isAuthsub=this.userService.getIsAuthListener()
     .subscribe(isAuthenticated=>{
      this.isAuthenticated=isAuthenticated;
-
     })
+    
   }
  ngOnDestroy(){
    this.isAuthsub.unsubscribe();

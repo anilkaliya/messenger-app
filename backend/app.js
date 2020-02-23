@@ -57,10 +57,8 @@ app.set( 'port', port );
 
 const server = http.createServer(app);
 server.listen(port,()=>{
-  console.log("listening");
+  console.log(`listening ${port}`);
 });
-
-
 const io = socket.listen(server);
 io.sockets.on('connection', (socket) => {
   socket.on('join',(data)=>{
@@ -85,6 +83,11 @@ io.sockets.on('connection', (socket) => {
       io.in(data.room).emit('new message', { message: data.message,user:data.user,polarity:polarity});
 
     });
+
+    })
+    socket.on('image',(data)=>{
+      transformedImage=data.image.toString('base64')
+      io.in(data.room).emit('newimage', { image:transformedImage ,user:data.user});
 
     })
 });

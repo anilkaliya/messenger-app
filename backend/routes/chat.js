@@ -4,8 +4,6 @@ const Chat=require('../models/chat');
 
 Router.get("/:chatroom",(req,res,next)=>{
     Chat.find({chatroom:req.params.chatroom}).then(chats=>{
-      console.log(chats);
-        // console.log(chats.messages.message);
         res.status(200).json(chats);
     })
 })

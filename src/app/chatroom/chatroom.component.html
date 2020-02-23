@@ -1,14 +1,16 @@
-
-
 <div class ="both">
- <!-- <ol class="chat" #scrollMe [scrollTop]="scrollMe.scrollHeight"  *ngIf="chatArray.length > 0"> -->
- <div  #scrollMe [scrollTop]="scrollMe.scrollHeight" class= "userTextDivOp" *ngFor="let message of chatArray" >
+    <h4>Chatting With {{selectedUser}}</h4>
+ <div  class= "userTextDivOp" *ngFor="let message of chatArray" >
    <span class="username">{{message.messages[0].name}}</span>
-<span class="message"> {{message.messages[0].message}}  </span>
+  <span class="message"> {{message.messages[0].message}}  </span>
 <span class="date">({{ message.date | date:'M/d/yy h:mm a' }})</span> 
  </div>
+ <div  class= "userTextDivOp" *ngFor="let image of imageArray" >
+  <span class="username">{{image.user}}</span>
+  <img [src]="image.image" [alt]="image">
+</div>
 
-     <div  #scrollMe [scrollTop]="scrollMe.scrollHeight" class= "userTextDivOp" *ngFor="let message of messageArray">
+     <div   class= "userTextDivOp" *ngFor="let message of messageArray">
        <span class="username">{{message.user}}</span>
        <span class="message" *ngIf="message.polarity=='positive'">{{message.message}}  <ngx-emoji [emoji]="{  id: 'smiley', skin: 3 }" size="16"></ngx-emoji></span>
        <span class="message" *ngIf="message.polarity=='neutral'">  {{message.message}}  <ngx-emoji [emoji]="{  id: 'neutral_face', skin: 3 }" size="16"></ngx-emoji></span>
@@ -17,13 +19,17 @@
      </div>
 
     </div>
-
+  <div class="imagearea">
+    <button mat-raised-button color="accent" (click)="filePicker.click()">Send image</button>
+    <input type="file" #filePicker (change)="onImagePicked($event)">
+  </div>
     <div class="typezone">
    
         <form>
           <textarea type="text" #msgInput (keydown.enter)="sendMessage(msgInput.value);false;msgInput.value='';" placeholder="Say something"></textarea><input type="submit" class="send" value=""/>
-       </form>
+       
+          
+        </form>
  
-
 
 </div>

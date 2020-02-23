@@ -11,7 +11,9 @@ import {
   MatCardModule,
   MatButtonModule,
   MatToolbarModule,
-  MatFormFieldModule
+  MatFormFieldModule,
+  MatProgressSpinnerModule
+
 } from "@angular/material";
 import { LoginComponent } from './login/login.component';
 import { HeaderComponent } from './header/header.component';
@@ -45,6 +47,7 @@ const config: SocketIoConfig = { url: '', options: {} };
     MatToolbarModule,
     PickerModule,
     EmojiModule,
+    MatProgressSpinnerModule,
     SocketIoModule.forRoot(config),
     AppRoutingModule
   

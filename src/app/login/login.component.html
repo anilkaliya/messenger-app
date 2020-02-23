@@ -1,7 +1,7 @@
-<div style="align-content: center">
+<!-- <div style="align-content: center">
 <h3>Please login!</h3></div>
 <mat-card>
-  <form (submit)="onSignIn(loginForm)" #loginForm="ngForm" >
+  <form (submit)="" #loginForm="ngForm" >
     <mat-form-field>
     <input matInput name="name" ngModel type="text" #name="ngModel"  placeholder="name" required>
   
@@ -13,4 +13,23 @@
     <button mat-raised-button color="accent" type="submit">SignIn</button>
   
   </form>
+  </mat-card> -->
+
+  
+  <div class="flex-container" [ngStyle]="{background: 'url(https://coolbackgrounds.io/images/unsplash/anders-jilden-medium-5d01610e.jpg)'}">
+    <mat-card>
+    <form (submit)="onSignIn(loginForm)" #loginForm="ngForm" >
+      <!-- <mat-spinner *ngIf="inProgress"></mat-spinner> -->
+      <h1>Login</h1>
+      <mat-form-field>
+        <input matInput name="name" ngModel type="text" #name="ngModel"  placeholder="name" required>
+        <mat-error *ngIf="name.invalid">Please enter a valid and unique Email.</mat-error>
+    </mat-form-field>
+  <mat-form-field>
+      <input matInput name="password" ngModel type="password" placeholder="password" #password="ngModel" required minlength="6" >
+      <mat-error *ngIf="password.invalid">Please enter a valid password.</mat-error>
+    </mat-form-field>
+      <button mat-raised-button color="accent" type="submit">Login</button>
+    </form>
   </mat-card>
+  </div>
